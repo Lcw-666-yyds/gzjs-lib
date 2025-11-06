@@ -59,8 +59,8 @@
             max-width: 100%; /* 取消最大宽度限制，铺满屏幕 */
             width: 100%;
             margin: 0 auto;
-            border: 1px solid #8b4513; /* 细边框保持不变 */
-            padding: 15px 8px !important; /* 进一步减小邀请函内边距 */
+            border: 1px solid #8b4513; /* 所有页面统一边框样式 */
+            padding: 15px 8px !important; /* 所有页面统一内边距 */
             background-color: rgba(26, 24, 21, 0.95);
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
             position: relative;
@@ -135,7 +135,7 @@
             position: relative;
             z-index: 1;
         }
-        /* 最后两页内容居中样式（第二页和第七页统一居中） */
+        /* 第二页、第六页、第七页内容居中样式（保持统一布局逻辑） */
         .page[data-page="2"] .section,
         .page[data-page="6"] .section,
         .page[data-page="7"] .section {
@@ -146,39 +146,50 @@
             min-height: calc(100vh - 120px); /* 占满页面高度（减去边距和状态条） */
             width: 100%;
         }
-        /* 第二页和第七页文字容器样式（模仿第二页排版） */
+        /* 邀请函专用容器样式（第二页、第七页共用） */
         .invite-container {
             width: 90%;
             max-width: 600px;
             margin: 0 auto;
+            padding: 15px 0;
         }
-        /* 调整文字居中样式 */
-        .page[data-page="2"] .invite-container p,
-        .page[data-page="7"] .invite-container p {
-            text-indent: 0; /* 取消首行缩进，模仿第二页 */
-            text-align: left; /* 保持文字居左排版 */
-            margin-bottom: 15px;
+        /* 邀请函标准排版样式 */
+        .invite-container .salutation { /* 称谓 */
+            font-size: 1.05rem;
+            color: #f0e6d2;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+        .invite-container .body { /* 正文 */
             font-size: 0.95rem;
+            color: #f0e6d2;
+            line-height: 1.9;
+            margin-bottom: 30px;
+            text-align: left;
         }
-        .page[data-page="6"] .section p {
-            text-indent: 0; /* 第六页保持居中无缩进 */
-            max-width: 90%; /* 限制最大宽度，避免文字过宽 */
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
+        .invite-container .body p {
+            margin-bottom: 15px;
         }
-        .page[data-page="6"] .time-table {
-            margin-left: auto;
-            margin-right: auto;
-            max-width: 95%; /* 表格自适应宽度 */
+        .invite-container .closing { /* 祝颂语 */
+            font-size: 0.95rem;
+            color: #f0e6d2;
+            margin-bottom: 40px;
+            text-align: left;
+            padding-left: 0;
         }
-        /* 第二页和第七页落款样式统一 */
+        /* 第二页和第七页落款样式（邀请函标准右对齐） */
         .signature {
             margin-top: 30px;
             text-align: right;
+            font-size: 0.95rem;
+            color: #f0e6d2;
         }
-        .signature p {
-            margin-bottom: 5px !important;
+        .signature .host { /* 邀请方 */
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .signature .date { /* 日期 */
+            margin-bottom: 5px;
         }
         /* 第七页底部信息样式 */
         .page[data-page="7"] .footer-section {
@@ -191,12 +202,26 @@
             text-align: center;
             font-size: 0.95rem;
             color: #d4af37;
+            margin-bottom: 8px;
+        }
+        /* 第六页样式保持不变 */
+        .page[data-page="6"] .section p {
+            text-indent: 0; /* 第六页保持居中无缩进 */
+            max-width: 90%; /* 限制最大宽度，避免文字过宽 */
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        .page[data-page="6"] .time-table {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 95%; /* 表格自适应宽度 */
         }
         .section-title {
             font-size: 1.05rem; /* 调整section标题 */
             color: #d4af37;
             margin-bottom: 20px; /* 增加标题下方间距 */
-            border-left: none; /* 取消左边框，模仿第二页 */
+            border-left: none; /* 取消左边框，统一风格 */
             padding-left: 0;
             transition: all 0.3s ease;
             position: relative;
@@ -204,7 +229,7 @@
             text-align: center;
             width: 100%;
         }
-        /* 调整section-title样式（统一第二页和第七页） */
+        /* 调整section-title样式（统一第二页、第六页、第七页） */
         .page[data-page="2"] .section-title,
         .page[data-page="7"] .section-title,
         .page[data-page="6"] .section-title {
@@ -219,6 +244,8 @@
         .page[data-page="2"] .section-title::after,
         .page[data-page="7"] .section-title::after,
         .page[data-page="6"] .section-title::after {
+            content: "";
+            position: absolute;
             left: 50%;
             transform: translateX(-50%);
             width: 60%;
@@ -232,6 +259,7 @@
             width: 80%;
             background-color: #d4af37;
         }
+        /* 其他页面正文样式（不影响邀请函页面） */
         .section p {
             font-size: 0.9rem; /* 适当调整正文大小，保证可读性 */
             margin-bottom: 10px; /* 进一步减小段落间距 */
@@ -423,6 +451,76 @@
         .page[data-page="7"] ~ .scroll-tip {
             display: none;
         }
+        /* 音乐控制按钮样式 */
+        .music-control {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 20;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(139, 69, 19, 0.7);
+            border: 1px solid #d4af37;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+        .music-control:hover {
+            background-color: rgba(212, 175, 55, 0.3);
+            transform: scale(1.05);
+            border-color: #f0e6d2;
+        }
+        .music-icon {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            transition: all 0.3s ease;
+        }
+        /* 播放图标 */
+        .music-icon.play {
+            border-width: 8px 0 8px 14px;
+            border-color: transparent transparent transparent #d4af37;
+            margin-left: 3px;
+        }
+        /* 暂停图标 */
+        .music-icon.pause {
+            width: 14px;
+            height: 16px;
+            border-style: none;
+            position: relative;
+        }
+        .music-icon.pause::before,
+        .music-icon.pause::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 16px;
+            background-color: #d4af37;
+        }
+        .music-icon.pause::before {
+            left: 0;
+        }
+        .music-icon.pause::after {
+            right: 0;
+        }
+        /* 音频加载提示 */
+        .music-loading {
+            position: absolute;
+            top: 55px;
+            right: 15px;
+            z-index: 20;
+            color: #d4af37;
+            font-size: 10px;
+            background-color: rgba(26, 24, 21, 0.8);
+            padding: 2px 6px;
+            border-radius: 3px;
+            border: 1px solid #8b4513;
+            display: none;
+        }
         /* 桌面端适配（大屏恢复原有比例） */
         @media (min-width: 768px) {
             .page-content {
@@ -488,12 +586,30 @@
             .invite-container {
                 width: 80%;
                 max-width: 700px;
+                padding: 20px 0;
             }
-            .page[data-page="2"] .invite-container p,
-            .page[data-page="7"] .invite-container p {
+            /* 桌面端邀请函排版优化 */
+            .invite-container .salutation {
+                font-size: 1.2rem;
+                margin-bottom: 30px;
+            }
+            .invite-container .body {
                 font-size: 1.1rem;
                 line-height: 2.0;
+                margin-bottom: 40px;
+            }
+            .invite-container .body p {
                 margin-bottom: 20px;
+            }
+            .invite-container .closing {
+                font-size: 1.1rem;
+                margin-bottom: 50px;
+            }
+            .signature {
+                font-size: 1.1rem;
+            }
+            .signature .host {
+                margin-bottom: 10px;
             }
             .section-title {
                 font-size: 1.5rem;
@@ -633,6 +749,16 @@
 </head>
 <body>
     <div class="page-container" id="container">
+        <!-- 音乐控制相关元素 -->
+        <audio id="backgroundMusic" loop preload="auto">
+            <source src="music/background.mp3" type="audio/mpeg">
+            您的浏览器不支持音频播放
+        </audio>
+        <div class="music-control" id="musicControl">
+            <div class="music-icon pause" id="musicIcon"></div>
+        </div>
+        <div class="music-loading" id="musicLoading">音频加载中...</div>
+        
         <div class="page-content" id="content">
             <!-- 第1页 -->
             <div class="page active" data-page="1">
@@ -647,7 +773,7 @@
                         <div class="title-section">
                             <h1>优读剧场第二期</h1>
                             <h2>《烽火卷书：黔州星火》邀请函</h2>
-                            <p>—— 典耀中华主题读书活动之“时光共振优读剧场” ——</p>
+                            <p>—— 典耀中华主题读书活动 ——</p>
                         </div>
 
                         <div class="section intro-section">
@@ -664,18 +790,24 @@
                 </div>
             </div>
 
-            <!-- 第2页：简洁邀请页（整体居中，保持原有文字排版） -->
+            <!-- 第2页：标准邀请函格式（边框与其他页统一） -->
             <div class="page" data-page="2">
                 <div class="mask">
                     <div class="invitation">
                         <div class="section invite-section">
-                            <h3 class="section-title">特邀莅临</h3>
+                            <h3 class="section-title">邀请函</h3>
                             <div class="invite-container">
-                                <p>尊敬的XXX：</p>
-                                <p>图书馆将于2025年11月12日14：00，在图书馆三楼会议室举办优读剧场第二期《烽火卷书：黔州星火》，期待您的到来！</p>
+                                <div class="salutation">尊敬的先生/女士：</div>
+                                <div class="body">
+                                    <p>为传承红色基因，弘扬革命精神，贵州建设职业技术学院图书馆特举办优读剧场第二期《烽火卷书：黔州星火》活动。本次活动以《贵阳史话》为蓝本，通过沉浸式表演再现黔州大地的革命岁月，让红色文化直抵人心。</p>
+                                    <p>我们诚挚邀请您拨冗莅临，与全校师生共同感受革命先辈的家国情怀，在历史与现实的碰撞中汲取奋进力量。</p>
+                                    <p>活动时间：2025年11月12日 14:00</p>
+                                    <p>活动地点：图书馆三楼会议室</p>
+                                </div>
+                                <div class="closing">盼您莅临，共襄盛举！</div>
                                 <div class="signature">
-                                    <p>图书馆</p>
-                                    <p>2025年11月6日</p>
+                                    <div class="host">贵州建设职业技术学院图书馆</div>
+                                    <div class="date">2025年11月6日</div>
                                 </div>
                             </div>
                         </div>
@@ -792,25 +924,30 @@
                 </div>
             </div>
 
-            <!-- 原第6页 → 现第7页（模仿第二页排版，整体居中） -->
+            <!-- 第7页：正式邀请函格式（边框统一，内容规范） -->
             <div class="page" data-page="7">
                 <div class="mask">
                     <div class="invitation">
                         <div class="section invitee-section">
                             <h3 class="section-title">诚挚邀请</h3>
                             <div class="invite-container">
-                                <p>尊敬的领导、各部门老师：</p>
-                                <p>值此红色历史传承之际，贵州建设职业技术学院优读剧场谨以最诚挚的心意，邀请您莅临优读剧场第二期《烽火卷书：黔州星火》现场，共同回望黔州大地的革命岁月，感受英雄儿女的家国情怀。</p>
-                                <p>我们期待与您一同在沉浸式体验中重温历史、汲取力量，让红色基因在校园中代代相传。</p>
+                                <div class="salutation">尊敬的各位领导、老师：</div>
+                                <div class="body">
+                                    <p>红色基因，薪火相传；黔州大地，英雄辈出。为深入学习贯彻习近平总书记关于传承红色基因的重要论述，丰富校园文化生活，贵州建设职业技术学院图书馆精心打造优读剧场第二期《烽火卷书：黔州星火》。</p>
+                                    <p>本次活动以沉浸式戏剧演绎为核心，再现林青就义、贵阳民众觉醒、忻口战役等经典历史场景，让观众穿越时空，感受革命先辈的坚定信仰与家国情怀。我们深信，这场红色文化盛宴，必将成为一次深刻的精神洗礼。</p>
+                                    <p>谨邀您拨冗出席，与我们一同在剧场中重温峥嵘岁月，在感悟历史中凝聚奋进力量，共同推动红色文化在校园落地生根、开花结果。</p>
+                                </div>
+                                <div class="closing">顺颂时祺！</div>
                                 <div class="signature">
-                                    <p>贵州建设职业技术学院图书馆</p>
-                                    <p>2025年11月6日</p>
+                                    <div class="host">贵州建设职业技术学院图书馆</div>
+                                    <div class="date">2025年11月6日</div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="footer-section">
                             <p>演出地点：贵州建设职业技术学院图书馆三楼会议室</p>
+                            <p>咨询电话：XXX-XXXXXXX（如有需要请提前联系）</p>
                         </div>
                     </div>
                 </div>
@@ -976,6 +1113,59 @@
             localImageConfig.forEach(config => {
                 handleLocalImageLoad(config);
             });
+
+            // 音乐自动播放处理
+            const audio = document.getElementById('backgroundMusic');
+            const musicControl = document.getElementById('musicControl');
+            const musicIcon = document.getElementById('musicIcon');
+            const musicLoading = document.getElementById('musicLoading');
+
+            // 尝试自动播放（兼容浏览器策略）
+            function tryAutoPlay() {
+                musicLoading.style.display = 'block';
+                audio.play().then(() => {
+                    musicLoading.style.display = 'none';
+                    musicIcon.classList.remove('play');
+                    musicIcon.classList.add('pause');
+                    console.log('🎵 音乐自动播放成功');
+                }).catch(err => {
+                    musicLoading.style.display = 'none';
+                    musicIcon.classList.remove('pause');
+                    musicIcon.classList.add('play');
+                    console.log('⚠️ 自动播放被浏览器阻止，点击播放按钮即可开启', err);
+                    
+                    // 点击页面任何位置也可触发播放
+                    document.body.addEventListener('click', function playOnClick() {
+                        audio.play().then(() => {
+                            musicIcon.classList.remove('play');
+                            musicIcon.classList.add('pause');
+                            console.log('🎵 点击页面后音乐播放成功');
+                        }).catch(err => {
+                            console.log('⚠️ 点击播放失败', err);
+                        });
+                        document.body.removeEventListener('click', playOnClick);
+                    }, { once: true });
+                });
+            }
+
+            // 音乐控制按钮点击事件
+            musicControl.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play().then(() => {
+                        musicIcon.classList.remove('play');
+                        musicIcon.classList.add('pause');
+                    }).catch(err => {
+                        console.log('⚠️ 播放失败', err);
+                    });
+                } else {
+                    audio.pause();
+                    musicIcon.classList.remove('pause');
+                    musicIcon.classList.add('play');
+                }
+            });
+
+            // 页面加载完成后尝试自动播放
+            tryAutoPlay();
 
             // 初始化页面
             updatePage();
