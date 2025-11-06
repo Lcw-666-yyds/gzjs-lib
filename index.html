@@ -65,6 +65,30 @@
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
             position: relative;
         }
+        /* 第一页校徽和学校名称容器 */
+        .school-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        .school-logo {
+            width: 40px !important; /* 校徽尺寸（根据实际调整） */
+            height: 40px !important;
+            margin-right: 10px;
+            border: 1px solid #8b4513;
+            border-radius: 50%; /* 校徽圆形裁剪（如果校徽是方形可去掉） */
+            object-fit: cover;
+        }
+        .school-name {
+            font-size: 1.1rem;
+            color: #d4af37;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        }
         .invitation::before {
             content: "";
             position: absolute;
@@ -111,6 +135,31 @@
             position: relative;
             z-index: 1;
         }
+        /* 最后两页内容居中样式 */
+        .page[data-page="5"] .section,
+        .page[data-page="6"] .section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 120px); /* 占满页面高度（减去边距和状态条） */
+            text-align: center;
+        }
+        .page[data-page="5"] .section p,
+        .page[data-page="6"] .section p {
+            text-indent: 0; /* 取消首行缩进，居中更美观 */
+            max-width: 90%; /* 限制最大宽度，避免文字过宽 */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .page[data-page="5"] .time-table {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 95%; /* 表格自适应宽度 */
+        }
+        .page[data-page="6"] .footer-section {
+            margin-top: 20px;
+        }
         .section-title {
             font-size: 1.05rem; /* 调整section标题 */
             color: #d4af37;
@@ -120,6 +169,18 @@
             transition: all 0.3s ease;
             position: relative;
             display: inline-block;
+        }
+        /* 最后两页的section-title取消左边框，居中显示 */
+        .page[data-page="5"] .section-title,
+        .page[data-page="6"] .section-title {
+            border-left: none;
+            padding-left: 0;
+            margin-bottom: 20px;
+        }
+        .page[data-page="5"] .section-title::after,
+        .page[data-page="6"] .section-title::after {
+            left: 0;
+            width: 100%;
         }
         .section-title::after {
             content: "";
@@ -342,6 +403,19 @@
                 padding: 50px !important;
                 max-width: 1000px !important;
             }
+            /* 桌面端校徽和学校名称调整 */
+            .school-header {
+                margin-bottom: 30px;
+            }
+            .school-logo {
+                width: 60px !important;
+                height: 60px !important;
+                margin-right: 15px;
+            }
+            .school-name {
+                font-size: 1.5rem;
+                letter-spacing: 3px;
+            }
             .invitation::before {
                 opacity: 0.3;
             }
@@ -365,11 +439,25 @@
             .section {
                 margin-bottom: 50px;
             }
+            /* 桌面端最后两页内容居中调整 */
+            .page[data-page="5"] .section,
+            .page[data-page="6"] .section {
+                min-height: calc(100vh - 200px);
+            }
+            .page[data-page="5"] .time-table {
+                max-width: 70%;
+            }
             .section-title {
                 font-size: 1.5rem;
                 margin-bottom: 20px;
                 border-left: 4px solid #8b4513;
                 padding-left: 15px;
+            }
+            .page[data-page="5"] .section-title,
+            .page[data-page="6"] .section-title {
+                border-left: none;
+                padding-left: 0;
+                font-size: 1.8rem;
             }
             .section-title::after {
                 bottom: -5px;
@@ -501,10 +589,16 @@
             <div class="page active" data-page="1">
                 <div class="mask">
                     <div class="invitation">
+                        <!-- 新增：学校名称和校徽 -->
+                        <div class="school-header">
+                            <img src="images/school-logo.png" alt="贵州建设职业技术学院校徽" class="school-logo" id="schoolLogo">
+                            <h3 class="school-name">贵州建设职业技术学院</h3>
+                        </div>
+                        
                         <div class="title-section">
                             <h1>优读剧场第二期</h1>
                             <h2>《烽火卷书：黔州星火》邀请函</h2>
-                            <p>—— 典耀中华主题读书活动 ——</p>
+                            <p>—— 典耀中华主题读书活动之“时光共振优读剧场” ——</p>
                         </div>
 
                         <div class="section intro-section">
@@ -731,8 +825,14 @@
 
         // 图片加载处理
         document.addEventListener('DOMContentLoaded', function() {
-            // 本地图片配置列表
+            // 本地图片配置列表（新增校徽图片）
             const localImageConfig = [
+                {
+                    imgId: 'schoolLogo',
+                    errorId: 'error-logo',
+                    localPath: 'images/school-logo.png',
+                    imgDesc: '学校校徽（school-logo.png）'
+                },
                 {
                     imgId: 'img-tu1',
                     errorId: 'error-tu1',
@@ -767,15 +867,26 @@
 
                 img.onload = function() {
                     img.classList.add('loaded');
-                    loadingEl.style.display = 'none';
+                    if (loadingEl) loadingEl.style.display = 'none';
                     console.log(`✅ 本地图片加载成功：${config.imgDesc}`);
                 };
 
                 img.onerror = function() {
                     console.error(`❌ 本地图片加载失败：${config.imgDesc}`);
-                    loadingEl.style.display = 'none';
-                    errorEl.style.display = 'block';
-                    errorEl.innerHTML += "<br>提示：请确认图片为标准PNG格式，无损坏或格式篡改";
+                    if (loadingEl) loadingEl.style.display = 'none';
+                    // 校徽加载失败时显示文字占位
+                    if (config.imgId === 'schoolLogo') {
+                        img.style.display = 'none';
+                        const logoPlaceholder = document.createElement('span');
+                        logoPlaceholder.style.color = '#d4af37';
+                        logoPlaceholder.style.fontSize = '0.8rem';
+                        logoPlaceholder.textContent = '校徽';
+                        img.parentElement.insertBefore(logoPlaceholder, img);
+                    }
+                    if (errorEl) {
+                        errorEl.style.display = 'block';
+                        errorEl.innerHTML += "<br>提示：请确认图片为标准PNG格式，无损坏或格式篡改";
+                    }
                 };
 
                 if (img.complete) {
