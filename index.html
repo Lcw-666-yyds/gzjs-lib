@@ -158,7 +158,8 @@
             max-width: 95%; /* 表格自适应宽度 */
         }
         .page[data-page="7"] .footer-section {
-            margin-top: 20px;
+            margin-top: -20px !important; /* 关键调整：往上移动20px */
+            margin-bottom: 30px; /* 增加底部间距，避免太贴底 */
         }
         .section-title {
             font-size: 1.05rem; /* 调整section标题 */
@@ -529,6 +530,9 @@
             .footer-section {
                 margin-bottom: 30px;
             }
+            .page[data-page="7"] .footer-section {
+                margin-top: -30px !important; /* 桌面端往上移动更多 */
+            }
             .footer-section p {
                 font-size: 1.1rem;
                 margin-bottom: 10px;
@@ -598,7 +602,7 @@
                         <div class="title-section">
                             <h1>优读剧场第二期</h1>
                             <h2>《烽火卷书：黔州星火》邀请函</h2>
-                            <p>—— 典耀中华主题读书活动 ——</p>
+                            <p>—— 典耀中华主题读书活动之“时光共振优读剧场” ——</p>
                         </div>
 
                         <div class="section intro-section">
