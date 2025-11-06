@@ -38,30 +38,30 @@
         .page-content {
             flex: 1;
             overflow-y: auto;
-            padding: 20px;
+            padding: 15px; /* 移动端减少内边距 */
             transition: opacity 0.3s ease; /* 翻页过渡动画 */
         }
         .page-status {
-            padding: 15px 0;
+            padding: 12px 0; /* 移动端减少 padding */
             text-align: center;
             color: #d4af37;
-            font-size: 14px;
-            background: rgba(26, 24, 21, 0.9);
+            font-size: 13px; /* 移动端文字缩小 */
+            background: rgba(26, 24, 21, 0.95);
             border-top: 1px solid #8b4513;
         }
         .mask {
             width: 100%;
             min-height: 100%;
             background-color: rgba(15, 15, 15, 0.85);
-            padding: 40px 20px;
+            padding: 25px 15px; /* 移动端减少上下 padding */
         }
         .invitation {
             max-width: 1000px;
             margin: 0 auto;
-            border: 2px solid #8b4513;
-            padding: 50px;
-            background-color: rgba(26, 24, 21, 0.9);
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+            border: 1.5px solid #8b4513; /* 移动端边框变细 */
+            padding: 25px 15px; /* 移动端大幅减少内边距 */
+            background-color: rgba(26, 24, 21, 0.95);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
             position: relative;
         }
         .invitation::before {
@@ -72,49 +72,50 @@
             width: 100%;
             height: 100%;
             background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%238b4513' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
-            opacity: 0.3;
+            opacity: 0.25; /* 移动端降低背景纹理透明度，避免拥挤 */
             z-index: 0;
         }
         .title-section {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 35px; /* 移动端减少间距 */
             position: relative;
             z-index: 1;
         }
         .title-section h1 {
-            font-size: 2.5rem;
+            font-size: 1.8rem; /* 移动端大幅缩小标题 */
             color: #d4af37;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-            letter-spacing: 5px;
+            letter-spacing: 3px; /* 移动端减少字间距 */
             transition: text-shadow 0.3s ease;
         }
         .title-section h1:hover {
             text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
         }
         .title-section h2 {
-            font-size: 1.8rem;
+            font-size: 1.3rem; /* 移动端缩小副标题 */
             color: #f0e6d2;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             border-bottom: 1px solid #8b4513;
-            padding-bottom: 10px;
+            padding-bottom: 8px;
             display: inline-block;
         }
         .title-section p {
-            font-size: 1.1rem;
+            font-size: 0.95rem; /* 移动端缩小说明文字 */
             color: #d9c8a9;
+            padding: 0 10px; /* 移动端增加左右内边距，避免文字贴边 */
         }
         .section {
-            margin-bottom: 50px;
+            margin-bottom: 35px; /* 移动端减少区块间距 */
             position: relative;
             z-index: 1;
         }
         .section-title {
-            font-size: 1.5rem;
+            font-size: 1.2rem; /* 移动端缩小 section 标题 */
             color: #d4af37;
-            margin-bottom: 20px;
-            border-left: 4px solid #8b4513;
-            padding-left: 15px;
+            margin-bottom: 15px;
+            border-left: 3px solid #8b4513; /* 移动端边框变细 */
+            padding-left: 12px; /* 移动端减少内边距 */
             transition: all 0.3s ease;
             position: relative;
             display: inline-block;
@@ -122,65 +123,67 @@
         .section-title::after {
             content: "";
             position: absolute;
-            bottom: -5px;
-            left: 15px;
+            bottom: -4px;
+            left: 12px;
             width: 0;
             height: 2px;
             background-color: #d4af37;
             transition: width 0.5s ease;
         }
         .section-title:hover::after {
-            width: calc(100% - 15px);
+            width: calc(100% - 12px);
         }
         .section p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
+            font-size: 0.95rem; /* 移动端缩小正文文字 */
+            margin-bottom: 15px; /* 移动端减少段落间距 */
             text-indent: 2em;
             transition: color 0.3s ease;
+            line-height: 1.7; /* 移动端调整行高，提升可读性 */
         }
         .section p:hover {
             color: #fff;
         }
         .content-card {
-            background-color: rgba(44, 41, 36, 0.7);
+            background-color: rgba(44, 41, 36, 0.75);
             border: 1px solid #8b4513;
-            padding: 30px;
-            margin-bottom: 30px;
+            padding: 20px 15px; /* 移动端减少内边距 */
+            margin-bottom: 25px; /* 移动端减少卡片间距 */
             border-radius: 2px;
             transition: all 0.5s ease;
         }
         .content-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(139, 69, 19, 0.5);
+            transform: translateY(-3px); /* 移动端减小悬浮位移 */
+            box-shadow: 0 3px 15px rgba(139, 69, 19, 0.5);
             border-color: #d4af37;
         }
         .content-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.1rem; /* 移动端缩小卡片标题 */
             color: #d4af37;
-            margin-bottom: 15px;
+            margin-bottom: 12px; /* 移动端减少间距 */
             border-bottom: 1px dashed #8b4513;
-            padding-bottom: 10px;
+            padding-bottom: 8px; /* 移动端减少内边距 */
             transition: all 0.3s ease;
         }
         .content-card:hover h3 {
             border-color: #d4af37;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px; /* 移动端减少字间距 */
         }
         .content-card p {
-            font-size: 1rem;
-            margin-bottom: 15px;
+            font-size: 0.9rem; /* 移动端缩小卡片正文 */
+            margin-bottom: 12px; /* 移动端减少段落间距 */
             transition: color 0.3s ease;
+            line-height: 1.7;
         }
         .content-card:hover p {
             color: #fff;
         }
         .img-container {
             width: 100%;
-            margin: 20px 0;
-            padding: 5px;
+            margin: 15px 0; /* 移动端减少间距 */
+            padding: 4px; /* 移动端减少内边距 */
             border: 1px solid #8b4513;
-            background-color: rgba(44, 41, 36, 0.5);
-            min-height: 220px;
+            background-color: rgba(44, 41, 36, 0.6);
+            min-height: 150px; /* 移动端降低最小高度 */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -190,11 +193,11 @@
         }
         .img-container:hover {
             border-color: #d4af37;
-            transform: scale(1.02);
+            transform: scale(1.01); /* 移动端减小悬浮缩放 */
         }
         .event-img, .content-img {
             width: 100%;
-            max-width: 600px;
+            max-width: 100%; /* 移动端图片占满容器 */
             height: auto;
             display: block;
             object-fit: contain;
@@ -207,39 +210,42 @@
         }
         .img-container:hover .event-img,
         .img-container:hover .content-img {
-            transform: scale(1.05);
+            transform: scale(1.03); /* 移动端减小图片悬浮缩放 */
         }
         .img-loading {
             position: absolute;
             color: #d9c8a9;
-            font-size: 1rem;
+            font-size: 0.9rem; /* 移动端缩小加载文字 */
             z-index: 0;
             animation: pulse 1.5s infinite;
         }
         .img-error {
             position: absolute;
             color: #d4af37;
-            font-size: 0.9rem;
+            font-size: 0.85rem; /* 移动端缩小错误文字 */
             text-align: center;
             padding: 0 10px;
             z-index: 1;
             display: none;
+            line-height: 1.6;
         }
         .time-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin-top: 15px; /* 移动端减少间距 */
+            font-size: 0.85rem; /* 移动端缩小表格文字 */
         }
         .time-table th, .time-table td {
             border: 1px solid #8b4513;
-            padding: 15px;
+            padding: 8px 5px; /* 移动端大幅减少表格内边距 */
             text-align: center;
             transition: all 0.3s ease;
+            white-space: nowrap; /* 防止表格文字换行 */
         }
         .time-table th {
-            background-color: rgba(139, 69, 19, 0.3);
+            background-color: rgba(139, 69, 19, 0.35);
             color: #d4af37;
-            font-size: 1.1rem;
+            font-size: 0.9rem; /* 移动端缩小表头文字 */
         }
         .time-table tr:hover td {
             background-color: rgba(64, 58, 49, 0.8);
@@ -247,47 +253,219 @@
             border-color: #d4af37;
         }
         .time-table td {
-            background-color: rgba(44, 41, 36, 0.5);
-            font-size: 1rem;
+            background-color: rgba(44, 41, 36, 0.55);
         }
         .footer-section {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px; /* 移动端减少间距 */
             position: relative;
             z-index: 1;
         }
         .footer-section p {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
+            font-size: 0.95rem; /* 移动端缩小底部文字 */
+            margin-bottom: 8px; /* 移动端减少间距 */
             transition: color 0.3s ease;
+            padding: 0 10px; /* 移动端增加左右内边距 */
         }
         .footer-section .host {
-            font-size: 1.2rem;
+            font-size: 1.05rem; /* 移动端缩小主办方文字 */
             color: #d4af37;
-            margin-top: 30px;
+            margin-top: 20px; /* 移动端减少间距 */
         }
-        @media (max-width: 768px) {
+        /* 底部动态翻页提示（箭头+文字）- 移动端适配 */
+        .scroll-tip {
+            position: absolute;
+            bottom: 70px; /* 移动端调整位置 */
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #d4af37;
+            font-size: 12px; /* 移动端缩小提示文字 */
+            z-index: 10;
+            animation: fadeUp 1.5s infinite ease-in-out;
+            cursor: pointer;
+            padding: 10px 20px; /* 移动端扩大横向点击区域 */
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        .scroll-arrow {
+            width: 22px; /* 移动端缩小箭头 */
+            height: 22px;
+            border-bottom: 2px solid #d4af37;
+            border-right: 2px solid #d4af37;
+            transform: rotate(45deg);
+            margin-bottom: 6px; /* 移动端减少箭头与文字间距 */
+            transition: transform 0.3s ease;
+        }
+        .scroll-tip:active .scroll-arrow {
+            transform: rotate(45deg) scale(0.85); /* 移动端调整点击缩放 */
+        }
+        @keyframes fadeUp {
+            0% { 
+                opacity: 0.7; 
+                transform: translateX(-50%) translateY(0); 
+            }
+            50% { 
+                opacity: 1; 
+                transform: translateX(-50%) translateY(-8px); /* 移动端减小浮动距离 */
+            }
+            100% { 
+                opacity: 0.7; 
+                transform: translateX(-50%) translateY(0); 
+            }
+        }
+        /* 最后一页隐藏翻页提示 */
+        .page[data-page="6"] ~ .scroll-tip {
+            display: none;
+        }
+        /* 桌面端适配（大屏恢复原有比例） */
+        @media (min-width: 768px) {
+            .page-content {
+                padding: 20px;
+            }
+            .page-status {
+                padding: 15px 0;
+                font-size: 14px;
+            }
+            .mask {
+                padding: 40px 20px;
+            }
             .invitation {
-                padding: 30px 20px;
+                border: 2px solid #8b4513;
+                padding: 50px;
+            }
+            .invitation::before {
+                opacity: 0.3;
+            }
+            .title-section {
+                margin-bottom: 60px;
             }
             .title-section h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
+                margin-bottom: 20px;
+                letter-spacing: 5px;
             }
             .title-section h2 {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+            }
+            .title-section p {
+                font-size: 1.1rem;
+                padding: 0;
+            }
+            .section {
+                margin-bottom: 50px;
             }
             .section-title {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+                border-left: 4px solid #8b4513;
+                padding-left: 15px;
+            }
+            .section-title::after {
+                bottom: -5px;
+                left: 15px;
+            }
+            .section-title:hover::after {
+                width: calc(100% - 15px);
+            }
+            .section p {
+                font-size: 1.1rem;
+                margin-bottom: 20px;
+                line-height: 1.8;
+            }
+            .content-card {
+                padding: 30px;
+                margin-bottom: 30px;
+            }
+            .content-card:hover {
+                transform: translateY(-5px);
+            }
+            .content-card h3 {
                 font-size: 1.3rem;
+                margin-bottom: 15px;
+                padding-bottom: 10px;
             }
-            .time-table th, .time-table td {
-                padding: 10px;
-                font-size: 0.9rem;
+            .content-card:hover h3 {
+                letter-spacing: 1px;
             }
-            .event-img, .content-img {
-                max-width: 100%;
+            .content-card p {
+                font-size: 1rem;
+                margin-bottom: 15px;
+                line-height: 1.8;
             }
             .img-container {
-                min-height: 180px;
+                margin: 20px 0;
+                padding: 5px;
+                min-height: 220px;
+            }
+            .img-container:hover {
+                transform: scale(1.02);
+            }
+            .event-img, .content-img {
+                max-width: 600px;
+            }
+            .img-container:hover .event-img,
+            .img-container:hover .content-img {
+                transform: scale(1.05);
+            }
+            .img-loading {
+                font-size: 1rem;
+            }
+            .img-error {
+                font-size: 0.9rem;
+            }
+            .time-table {
+                margin-top: 20px;
+                font-size: 1rem;
+            }
+            .time-table th, .time-table td {
+                padding: 15px;
+            }
+            .time-table th {
+                font-size: 1.1rem;
+            }
+            .footer-section {
+                margin-bottom: 30px;
+            }
+            .footer-section p {
+                font-size: 1.1rem;
+                margin-bottom: 10px;
+                padding: 0;
+            }
+            .footer-section .host {
+                font-size: 1.2rem;
+                margin-top: 30px;
+            }
+            .scroll-tip {
+                bottom: 80px;
+                font-size: 14px;
+                padding: 10px;
+            }
+            .scroll-arrow {
+                width: 28px;
+                height: 28px;
+                margin-bottom: 8px;
+            }
+            .scroll-tip:active .scroll-arrow {
+                transform: rotate(45deg) scale(0.9);
+            }
+            @keyframes fadeUp {
+                0% { 
+                    opacity: 0.6; 
+                    transform: translateX(-50%) translateY(0); 
+                }
+                50% { 
+                    opacity: 1; 
+                    transform: translateX(-50%) translateY(-10px); 
+                }
+                100% { 
+                    opacity: 0.6; 
+                    transform: translateX(-50%) translateY(0); 
+                }
             }
         }
         @keyframes pulse {
@@ -302,61 +480,6 @@
         .page.active {
             display: block;
         }
-
-        /* 底部动态翻页提示（箭头+文字）- 新增点击交互 */
-        .scroll-tip {
-            position: absolute;
-            bottom: 80px; /* 位于状态条上方 */
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: #d4af37; /* 金色文字，契合战争年代风格 */
-            font-size: 14px;
-            z-index: 10; /* 确保在最上层 */
-            animation: fadeUp 1.5s infinite ease-in-out; /* 循环动效 */
-            cursor: pointer; /* 鼠标指针变为手型，提示可点击 */
-            padding: 10px; /* 扩大点击区域 */
-            border-radius: 4px; /* 优化点击区域视觉效果 */
-            transition: background-color 0.3s ease; /* 点击反馈过渡 */
-        }
-        /* 鼠标悬浮/触摸按压反馈 */
-        .scroll-tip:hover, .scroll-tip:active {
-            background-color: rgba(212, 175, 55, 0.1); /* 金色透明背景反馈 */
-        }
-        .scroll-arrow {
-            width: 28px;
-            height: 28px;
-            border-bottom: 2px solid #d4af37; /* 金色箭头 */
-            border-right: 2px solid #d4af37;
-            transform: rotate(45deg);
-            margin-bottom: 8px;
-            transition: transform 0.3s ease; /* 点击时箭头动效 */
-        }
-        /* 点击时箭头缩放反馈 */
-        .scroll-tip:active .scroll-arrow {
-            transform: rotate(45deg) scale(0.9);
-        }
-        /* 动态呼吸+上移动画 */
-        @keyframes fadeUp {
-            0% { 
-                opacity: 0.6; 
-                transform: translateX(-50%) translateY(0); 
-            }
-            50% { 
-                opacity: 1; 
-                transform: translateX(-50%) translateY(-10px); 
-            }
-            100% { 
-                opacity: 0.6; 
-                transform: translateX(-50%) translateY(0); 
-            }
-        }
-        /* 最后一页隐藏翻页提示 */
-        .page[data-page="6"] ~ .scroll-tip {
-            display: none;
-        }
     </style>
 </head>
 <body>
@@ -369,7 +492,7 @@
                         <div class="title-section">
                             <h1>优读剧场第二期</h1>
                             <h2>《烽火卷书：黔州星火》邀请函</h2>
-                            <p>—— 典耀中华主题读书活动之“时光共振优读剧场” ——</p>
+                            <p>—— 典耀中华主题读书活动 ——</p>
                         </div>
 
                         <div class="section intro-section">
@@ -587,7 +710,7 @@
             startAutoPage(); // 滑动结束后重启自动翻页
         });
 
-        // 新增：点击动态提示组件翻页
+        // 点击动态提示组件翻页
         document.getElementById('scrollTip').addEventListener('click', () => {
             clearInterval(config.autoTimer); // 点击时暂停自动翻页
             nextPage(); // 直接跳转到下一页
